@@ -2,7 +2,7 @@
 """Generate release notes
 
 USAGE:
-./releaseNotes.py
+./release_notes.py
 
 """
 import os
@@ -31,12 +31,14 @@ GIT_LAST_COMMIT = subprocess.Popen(
 
 # Generate release notes
 if "GO_PIPELINE_NAME" in os.environ:
+
+    # Define the path to the Git tag "current"
     CURRENT = "Build/" + os.environ["GO_PIPELINE_NAME"] + "/current"
 
     # Create release_notes.txt
     RELEASE_NOTE = create_file("release_notes.txt")
 
-    print("Generate release notes (" + CURRENT + ")")
+    print("Generate release notes from tag " + CURRENT)
 
     # retrieve commit messages and save to text file
     GIT_LOGS = subprocess.Popen(["git", "log", CURRENT + "..HEAD",
